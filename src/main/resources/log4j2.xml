@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" name="FirstLogger" packages="org.apache.logging.log4j">
+    <Properties>
+        <Property name="generalLog">target/log/general_log.log</Property>
+        <Property name="exceptionLog">target/log/exception_log.log</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+        </Console>
+        <File name="GeneralLogFile" fileName="${generalLog}">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="ExceptionLogFile" fileName="${exceptionLog}">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="ExceptionLogs" level="info" additivity="true">
+            <AppenderRef ref="ExceptionLogFile"/>
+        </Logger>
+
+        <Root level="all">
+            <AppenderRef ref="GeneralLogFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
